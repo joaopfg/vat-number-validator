@@ -1,0 +1,14 @@
+dist
+coverage
+.prettierignore
+package-lock.json
+*.snap
+.npmrc
+.husky
+.gitignore
+.editorconfig
+*.template
+*.svg
+*.ico
+README.md
+*.sql

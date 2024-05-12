@@ -1,0 +1,62 @@
+module.exports = {
+  ignorePatterns: [],
+  env: {
+    browser: true,
+    es2021: true,
+    jest: true,
+  },
+  extends: ['prettier'],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
+  plugins: [
+    '@typescript-eslint',
+    'typescript-sort-keys',
+    'unused-imports',
+    'prettier',
+    'prefer-arrow',
+    'sort-class-members',
+  ],
+  rules: {
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': 'warn',
+    '@typescript-eslint/no-unused-vars': 'error',
+    'import/extensions': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'import/no-unresolved': 'off',
+    'import/prefer-default-export': 'off',
+    'no-nested-ternary': 'off',
+    'no-plusplus': 'off',
+    'no-unused-vars': 'off',
+    'no-use-before-define': 'off',
+    'prettier/prettier': 'error',
+    'typescript-sort-keys/interface': 'error',
+    'typescript-sort-keys/string-enum': 'error',
+    'unused-imports/no-unused-imports': 'error',
+    'prefer-arrow/prefer-arrow-functions': [
+      'error',
+      {
+        disallowPrototype: true,
+        singleReturnOnly: true,
+        classPropertiesAllowed: false,
+      },
+    ],
+    'sort-class-members/sort-class-members': [
+      'error',
+      {
+        order: [
+          '[static-properties]',
+          '[properties]',
+          '[conventional-private-properties]',
+          'constructor',
+          '[static-methods]',
+          '[methods]',
+          '[conventional-private-methods]',
+        ],
+        accessorPairPositioning: 'getThenSet',
+      },
+    ],
+  },
+};
