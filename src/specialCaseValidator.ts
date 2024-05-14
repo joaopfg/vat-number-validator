@@ -298,9 +298,8 @@ function validateChileanVat(vat: string): boolean {
         return false;
     }
 
-    const digitsOnly = vat.replace(/\D/g, '');
-    const checkDigit = digitsOnly.charAt(8);
-    const digits = digitsOnly.slice(0, 8);
+    const checkDigit = vat.charAt(9);
+    const digits = vat.slice(0, 8);
 
     const weights = [3, 2, 7, 6, 5, 4, 3, 2];
     let sum = 0;
@@ -321,6 +320,52 @@ function validateChileanVat(vat: string): boolean {
     }
 }
 
+function validateColombianVat(vat: string): boolean {
+    const regex = countryRegexMap.get(Country.Colombia);
+    const vatRegex = new RegExp(regex as string);
+
+    if (!vatRegex.test(vat)) {
+        return false;
+    }
+
+    const checkDigit = vat.charAt(10);
+    const digits = vat.slice(0, 9);
+
+    const weights = [41, 37, 29, 23, 19, 17, 13, 7, 3];
+    let sum = 0;
+
+    for (let i = 0; i < digits.length; i++) {
+        sum += parseInt(digits.charAt(i)) * weights[i];
+    }
+
+    const remainder = sum % 11;
+    const calculatedCheckDigit = (remainder == 0 || remainder == 1) ? remainder : 11 - remainder;
+    return parseInt(checkDigit) === calculatedCheckDigit;
+}
+
+function validateDominicanRepublicVat(vat: string): boolean {
+    const regex = countryRegexMap.get(Country.DominicanRepublic);
+    const vatRegex = new RegExp(regex as string);
+
+    if (!vatRegex.test(vat)) {
+        return false;
+    }
+
+    const checkDigit = vat.charAt(10);
+    const digits = vat.slice(0, 9);
+
+    const weights = [7, 9, 8, 6, 5, 4, 3, 2];
+    let sum = 0;
+
+    for (let i = 0; i < digits.length; i++) {
+        sum += parseInt(digits.charAt(i)) * weights[i];
+    }
+
+    const remainder = sum % 11;
+    const calculatedCheckDigit = (10 - remainder) % 9 + 1;
+    return parseInt(checkDigit) === calculatedCheckDigit;
+}
+
 export const countrySpecialCaseMap: Map<Country, (vat: string) => boolean> = new Map([
     [Country.France, validateFrenchVat],
     [Country.Italy, validateItalianVat],
@@ -334,4 +379,6 @@ export const countrySpecialCaseMap: Map<Country, (vat: string) => boolean> = new
     [Country.Switzerland, validateSwissVat],
     [Country.Taiwan, validateTaiwaneseVat],
     [Country.Brazil, validateBrazilianVat],
+    [Country.Chile, validateChileanVat],
+    [Country.Colombia, validateColombianVat],
 ]);

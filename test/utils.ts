@@ -42,6 +42,11 @@ export const validVats: { country: Country; vat: string }[] = [
   { vat: '23500580009', country: Country.Brazil },
   { vat: '18609823-4', country: Country.Chile },
   { vat: '12391279-9', country: Country.Chile },
+  { vat: '623456789-1', country: Country.Colombia },
+  { vat: '130002458', country: Country.DominicanRepublic },
+  { vat: '0614-050707-104-8', country: Country.ElSalvador },
+  { vat: '0614-241287-102-5', country: Country.ElSalvador },
+  { vat: '1234567-1', country: Country.Guatemala },
 ];
 
 export const invalidVats: { country: Country; vat: string }[] = [
