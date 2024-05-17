@@ -47,7 +47,15 @@ export const validVats: { country: Country; vat: string }[] = [
   { vat: '0614-050707-104-8', country: Country.ElSalvador },
   { vat: '0614-241287-102-5', country: Country.ElSalvador },
   { vat: '1234567-1', country: Country.Guatemala },
+  { vat: 'GODE561231GR8', country: Country.Mexico },
+  { vat: 'MAB9307148T4', country: Country.Mexico },
+  { vat: '80028061-0', country: Country.Paraguay },
+  { vat: '20512333797', country: Country.Peru },
+  { vat: '211003420017', country: Country.Uruguay },
+  { vat: 'V-114702834', country: Country.Venezuela },
+  { vat: 'J-305959918', country: Country.Venezuela },
 ];
+
 
 export const invalidVats: { country: Country; vat: string }[] = [
   { vat: '12345', country: Country.Albania },

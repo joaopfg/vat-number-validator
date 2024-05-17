@@ -6,11 +6,11 @@ export function isValidCountryVat(
   vat: string,
   country: Country
 ): boolean {
-  if(countrySpecialCaseMap.has(country)) {
+  if (countrySpecialCaseMap.has(country)) {
     const specialCaseValidator = countrySpecialCaseMap.get(country) as (vat: string) => boolean;
     return specialCaseValidator(vat);
   }
-  
+
   const regex = countryRegexMap.get(country);
   const vatRegex = new RegExp(regex as string);
   return vatRegex.test(vat);

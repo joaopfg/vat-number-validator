@@ -231,7 +231,7 @@ function validateBrazilianVat(vat: string): boolean {
         return false;
     }
 
-    if(vat.length === 14) {
+    if (vat.length === 14) {
         const weightsFirstDigit = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
         const weightsSecondDigit = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
         let sum = 0;
@@ -243,7 +243,7 @@ function validateBrazilianVat(vat: string): boolean {
         let remainder = sum % 11;
         const firstCheckDigit = remainder <= 1 ? 0 : 11 - remainder;
 
-        if(parseInt(vat.charAt(12)) !== firstCheckDigit ) {
+        if (parseInt(vat.charAt(12)) !== firstCheckDigit) {
             return false;
         }
 
@@ -259,7 +259,7 @@ function validateBrazilianVat(vat: string): boolean {
         return parseInt(vat.charAt(13)) === secondCheckDigit;
     }
 
-    if(vat.length === 11) {
+    if (vat.length === 11) {
         const weightsFirstDigit = [10, 9, 8, 7, 6, 5, 4, 3, 2];
         const weightsSecondDigit = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2];
         let sum = 0;
@@ -271,7 +271,7 @@ function validateBrazilianVat(vat: string): boolean {
         let remainder = sum % 11;
         const firstCheckDigit = remainder <= 1 ? 0 : 11 - remainder;
 
-        if(parseInt(vat.charAt(9)) !== firstCheckDigit ) {
+        if (parseInt(vat.charAt(9)) !== firstCheckDigit) {
             return false;
         }
 
@@ -366,6 +366,98 @@ function validateDominicanRepublicVat(vat: string): boolean {
     return parseInt(checkDigit) === calculatedCheckDigit;
 }
 
+function validateParaguayVat(vat: string): boolean {
+    const regex = countryRegexMap.get(Country.Paraguay);
+    const vatRegex = new RegExp(regex as string);
+
+    if (!vatRegex.test(vat)) {
+        return false;
+    }
+
+    const digitsOnly = vat.replace(/\D/g, '');
+    const checkDigit = digitsOnly.charAt(digitsOnly.length - 1);
+    const digits = digitsOnly.slice(0, -1);
+    let sum = 0;
+
+    for (let i = 0; i < digits.length; i++) {
+        sum += (i + 2) * parseInt(digits.charAt(digits.length - i - 1));
+    }
+
+    const calculatedCheckDigit = String((-sum % 11) % 10);
+
+    return checkDigit === calculatedCheckDigit;
+}
+
+function validatePeruvianVat(vat: string): boolean {
+    const regex = countryRegexMap.get(Country.Peru);
+    const vatRegex = new RegExp(regex as string);
+
+    if (!vatRegex.test(vat)) {
+        return false;
+    }
+
+    const number = vat.slice(0, 10);
+    const weights = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2];
+    const weightedSum = weights.reduce((sum, weight, index) => {
+        const digit = parseInt(number.charAt(index));
+        return sum + weight * digit;
+    }, 0);
+    const checkDigit = (11 - (weightedSum % 11)) % 10;
+    const calculatedCheckDigit = String(checkDigit);
+    const providedCheckDigit = vat.charAt(10);
+
+    return calculatedCheckDigit === providedCheckDigit;
+}
+
+function validateUruguayanVat(vat: string): boolean {
+    const regex = countryRegexMap.get(Country.Uruguay);
+    const vatRegex = new RegExp(regex as string);
+
+    if (!vatRegex.test(vat)) {
+        return false;
+    }
+
+    const number = vat.slice(0, 11);
+    const weights = [4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+    const total = weights.reduce((sum, weight, index) => {
+        const digit = parseInt(number.charAt(index));
+        return sum + digit * weight;
+    }, 0);
+    const calculatedCheckDigit = (-total % 11).toString();
+    const providedCheckDigit = vat.charAt(11);
+
+    return calculatedCheckDigit === providedCheckDigit;
+}
+
+function validateVenezuelanVat(vat: string): boolean {
+    const regex = countryRegexMap.get(Country.Venezuela);
+    const vatRegex = new RegExp(regex as string);
+
+    if (!vatRegex.test(vat)) {
+        return false;
+    }
+
+    const number = vat.slice(0, 10).replace(/[-\s]/g, '');
+    const weights = [3, 2, 7, 6, 5, 4, 3, 2];
+    const _companyTypes: { [key: string]: number } = {
+        'V': 4,   // natural person born in Venezuela
+        'E': 8,   // foreign natural person
+        'J': 12,  // company
+        'P': 16,  // passport
+        'G': 20,  // government
+    };
+    const companyType = _companyTypes[number[0]];
+    let sum = companyType;
+    for (let i = 0; i < 8; i++) {
+        sum += weights[i] * parseInt(number.charAt(i + 1));
+    }
+
+    const calculatedCheckDigit = '00987654321'[(sum % 11)];
+    const providedCheckDigit = vat.charAt(10);
+
+    return calculatedCheckDigit === providedCheckDigit;
+}
+
 export const countrySpecialCaseMap: Map<Country, (vat: string) => boolean> = new Map([
     [Country.France, validateFrenchVat],
     [Country.Italy, validateItalianVat],
@@ -381,4 +473,9 @@ export const countrySpecialCaseMap: Map<Country, (vat: string) => boolean> = new
     [Country.Brazil, validateBrazilianVat],
     [Country.Chile, validateChileanVat],
     [Country.Colombia, validateColombianVat],
+    [Country.DominicanRepublic, validateDominicanRepublicVat],
+    [Country.Paraguay, validateParaguayVat],
+    [Country.Peru, validatePeruvianVat],
+    [Country.Uruguay, validateUruguayanVat],
+    [Country.Venezuela, validateVenezuelanVat],
 ]);
