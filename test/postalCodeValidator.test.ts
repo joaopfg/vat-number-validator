@@ -1,7 +1,4 @@
-import {
-  isValidCountryVat,
-  isValidVat,
-} from '../src/vatValidator';
+import { isValidCountryVat, isValidVat } from '../src/vatValidator';
 import {
   validVats,
   invalidVats,
@@ -28,19 +25,13 @@ describe('isValidCountryVat', () => {
 });
 
 describe('isValidVat', () => {
-  test.each(validVatsArray)(
-    'should return true for %s',
-    (vat) => {
-      const result = isValidVat(vat);
-      expect(result).toBe(true);
-    }
-  );
+  test.each(validVatsArray)('should return true for %s', (vat) => {
+    const result = isValidVat(vat);
+    expect(result).toBe(true);
+  });
 
-  test.each(invalidVatsArray)(
-    'should return false for %s',
-    (vat) => {
-      const result = isValidVat(vat);
-      expect(result).toBe(false);
-    }
-  );
+  test.each(invalidVatsArray)('should return false for %s', (vat) => {
+    const result = isValidVat(vat);
+    expect(result).toBe(false);
+  });
 });

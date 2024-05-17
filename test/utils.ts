@@ -56,15 +56,10 @@ export const validVats: { country: Country; vat: string }[] = [
   { vat: 'J-305959918', country: Country.Venezuela },
 ];
 
-
 export const invalidVats: { country: Country; vat: string }[] = [
   { vat: '12345', country: Country.Albania },
 ];
 
-export const validVatsArray = [
-  '22150',
-];
+export const validVatsArray = ['22150'];
 
-export const invalidVatsArray = [
-  'abcdef',
-];
+export const invalidVatsArray = ['abcdef'];

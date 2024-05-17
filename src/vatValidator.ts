@@ -2,12 +2,11 @@ import { Country } from './country';
 import { countryRegexMap } from './countryRegex';
 import { countrySpecialCaseMap } from './specialCaseValidator';
 
-export function isValidCountryVat(
-  vat: string,
-  country: Country
-): boolean {
+export function isValidCountryVat(vat: string, country: Country): boolean {
   if (countrySpecialCaseMap.has(country)) {
-    const specialCaseValidator = countrySpecialCaseMap.get(country) as (vat: string) => boolean;
+    const specialCaseValidator = countrySpecialCaseMap.get(country) as (
+      vat: string
+    ) => boolean;
     return specialCaseValidator(vat);
   }
 
