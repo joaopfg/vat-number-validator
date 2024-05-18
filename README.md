@@ -2,6 +2,7 @@
 
 - [isValidCountryVat](#gear-isvalidcountryvat)
 - [isValidVat](#gear-isvalidvat)
+- [getErrorMessage](#gear-geterrormessage)
 
 ### :gear: isValidCountryVat
 
@@ -15,10 +16,17 @@
 | ---------- | ---------- |
 | `isValidVat` | `(vat: string) => boolean` |
 
+### :gear: getErrorMessage
+
+| Function | Type |
+| ---------- | ---------- |
+| `getErrorMessage` | `(country: Country) => string` |
+
 
 ## :wrench: Constants
 
 - [countryRegexMap](#gear-countryregexmap)
+- [countryErrorMessageMap](#gear-countryerrormessagemap)
 - [countrySpecialCaseMap](#gear-countryspecialcasemap)
 
 ### :gear: countryRegexMap
@@ -26,6 +34,12 @@
 | Constant | Type |
 | ---------- | ---------- |
 | `countryRegexMap` | `Map<Country, string>` |
+
+### :gear: countryErrorMessageMap
+
+| Constant | Type |
+| ---------- | ---------- |
+| `countryErrorMessageMap` | `Map<Country, string>` |
 
 ### :gear: countrySpecialCaseMap
 

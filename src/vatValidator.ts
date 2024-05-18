@@ -1,5 +1,6 @@
 import { Country } from './country';
 import { countryRegexMap } from './countryRegex';
+import { countryErrorMessageMap } from './errorMessage';
 import { countrySpecialCaseMap } from './specialCaseValidator';
 
 export function isValidCountryVat(vat: string, country: Country): boolean {
@@ -26,3 +27,6 @@ export function isValidVat(vat: string): boolean {
 
   return isValid;
 }
+
+export const getErrorMessage = (country: Country): string =>
+  countryErrorMessageMap.get(country) as string;
