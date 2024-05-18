@@ -70,10 +70,10 @@ function validateAustralianVat(vat: string): boolean {
   const number = vat.slice(2);
   const checkDigit = vat.slice(0, 2);
   const weights = [3, 5, 7, 9, 11, 13, 15, 17, 19];
-  let sum = 0
+  let sum = 0;
 
   for (let i = 0; i < weights.length; ++i) {
-    sum += (-weights[i] * parseInt(number.charAt(i)));
+    sum += -weights[i] * parseInt(number.charAt(i));
   }
 
   const modResult = (sum - 1) % 89;
@@ -392,7 +392,7 @@ function validateParaguayVat(vat: string): boolean {
   }
 
   const mod11 = ((-sum % 11) + 11) % 11;
-  const mod10 = (mod11 % 10 + 10) % 10;
+  const mod10 = ((mod11 % 10) + 10) % 10;
   const calculatedCheckDigit = String(mod10);
 
   return checkDigit === calculatedCheckDigit;
