@@ -1,6 +1,6 @@
 {
   "name": "vat-number-validator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A package for validating VAT numbers",
   "scripts": {
     "dev": "concurrently \"npm run build -- --watch\" \"npm test\"",
