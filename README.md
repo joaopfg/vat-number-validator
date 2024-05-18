@@ -1,11 +1,11 @@
-# VAT Number Validator 📮
+# VAT Number Validator 🔍🔍🔍
 
 [![npm version](https://img.shields.io/npm/v/vat-number-validator.svg?style=flat-square)](https://www.npmjs.com/package/vat-number-validator)
 [![build](https://img.shields.io/github/actions/workflow/status/joaopfg/vat-number-validator/main.yml?branch=main&style=flat-square&label=build)](https://github.com/joaopfg/vat-number-validator/actions)
 [![github](https://flat.badgen.net/badge/icon/github?icon=github&label)](https://github.com/joaopfg/vat-number-validator/)
 [![sponsors](https://img.shields.io/github/sponsors/joaopfg?style=flat-square&color=1da1f2)](https://github.com/sponsors/joaopfg/)
 
-- [VAT Number Validator 📮](#vat-number-validator-)
+- [VAT Number Validator �🔍🔍](#vat-number-validator-)
   - [Why Validating VAT Codes is Important](#why-validating-vat-codes-is-important)
     - [Benefits of Validating VAT Codes](#benefits-of-validating-vat-codes)
   - [Package Completeness ✅](#package-completeness-)
@@ -88,7 +88,7 @@ While the package is already robust, there are ongoing efforts to enhance its ca
 
 ## :wrench: Constants
 
-- [VAT Number Validator 📮](#vat-number-validator-)
+- [VAT Number Validator �🔍🔍](#vat-number-validator-)
   - [Why Validating VAT Codes is Important](#why-validating-vat-codes-is-important)
     - [Benefits of Validating VAT Codes](#benefits-of-validating-vat-codes)
   - [Package Completeness ✅](#package-completeness-)
