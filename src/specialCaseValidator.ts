@@ -67,18 +67,20 @@ function validateAustralianVat(vat: string): boolean {
     return false;
   }
 
-  const identifier = vat.substring(0, 9);
-  const checkDigits = vat.substring(9);
-  let total = 0;
+  const number = vat.slice(2);
+  const checkDigit = vat.slice(0, 2);
+  const weights = [3, 5, 7, 9, 11, 13, 15, 17, 19];
+  let sum = 0
 
-  for (let i = 0; i < identifier.length; i++) {
-    const digit = parseInt(identifier[i]);
-    total = (total * 10 + digit) % 89;
+  for (let i = 0; i < weights.length; ++i) {
+    sum += (-weights[i] * parseInt(number.charAt(i)));
   }
 
-  const calculatedCheckDigits = total.toString().padStart(2, '0');
+  const modResult = (sum - 1) % 89;
+  const positiveModResult = modResult < 0 ? modResult + 89 : modResult;
+  const expectedCheckDigit = String(11 + positiveModResult);
 
-  return calculatedCheckDigits === checkDigits;
+  return checkDigit === expectedCheckDigit;
 }
 
 function validateIsraeliVat(vat: string): boolean {
@@ -355,9 +357,8 @@ function validateDominicanRepublicVat(vat: string): boolean {
     return false;
   }
 
-  const checkDigit = vat.charAt(10);
-  const digits = vat.slice(0, 9);
-
+  const checkDigit = vat.charAt(8);
+  const digits = vat.slice(0, 8);
   const weights = [7, 9, 8, 6, 5, 4, 3, 2];
   let sum = 0;
 
@@ -366,7 +367,10 @@ function validateDominicanRepublicVat(vat: string): boolean {
   }
 
   const remainder = sum % 11;
-  const calculatedCheckDigit = ((10 - remainder) % 9) + 1;
+  const result = 10 - remainder;
+  const positiveModResult = ((result % 9) + 9) % 9;
+  const calculatedCheckDigit = positiveModResult + 1;
+
   return parseInt(checkDigit) === calculatedCheckDigit;
 }
 
@@ -387,7 +391,9 @@ function validateParaguayVat(vat: string): boolean {
     sum += (i + 2) * parseInt(digits.charAt(digits.length - i - 1));
   }
 
-  const calculatedCheckDigit = String((-sum % 11) % 10);
+  const mod11 = ((-sum % 11) + 11) % 11;
+  const mod10 = (mod11 % 10 + 10) % 10;
+  const calculatedCheckDigit = String(mod10);
 
   return checkDigit === calculatedCheckDigit;
 }
@@ -427,7 +433,8 @@ function validateUruguayanVat(vat: string): boolean {
     const digit = parseInt(number.charAt(index));
     return sum + digit * weight;
   }, 0);
-  const calculatedCheckDigit = (-total % 11).toString();
+  const mod11 = ((-total % 11) + 11) % 11;
+  const calculatedCheckDigit = mod11.toString();
   const providedCheckDigit = vat.charAt(11);
 
   return calculatedCheckDigit === providedCheckDigit;

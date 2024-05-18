@@ -8,7 +8,7 @@ import {
 
 describe('isValidCountryVat', () => {
   test.each(validVats)(
-    'returns true for valid VAT number in specified country',
+    'returns true for valid VAT number in test %s',
     (entry) => {
       const result = isValidCountryVat(entry.vat, entry.country);
       expect(result).toBe(true);
@@ -16,7 +16,7 @@ describe('isValidCountryVat', () => {
   );
 
   test.each(invalidVats)(
-    'returns false for invalid VAT number in specified country',
+    'returns false for invalid VAT number in test %s',
     (entry) => {
       const result = isValidCountryVat(entry.vat, entry.country);
       expect(result).toBe(false);
