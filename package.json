@@ -1,5 +1,5 @@
 {
-  "name": "vat-validator",
+  "name": "vat-number-validator",
   "version": "1.0.0",
   "description": "A package for validating VAT numbers",
   "scripts": {
@@ -76,14 +76,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joaopfg/vat-validator.git"
+    "url": "git+https://github.com/joaopfg/vat-code-validator.git"
   },
   "author": "joaopfg",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/joaopfg/vat-validator/issues"
+    "url": "https://github.com/joaopfg/vat-code-validator/issues"
   },
-  "homepage": "https://github.com/joaopfg/vat-validator#readme",
+  "homepage": "https://github.com/joaopfg/vat-code-validator#readme",
   "devDependencies": {
     "@babel/core": "7.24.5",
     "@babel/preset-env": "^7.24.5",
