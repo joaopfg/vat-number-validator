@@ -85,26 +85,7 @@ While the package is already robust, there are ongoing efforts to enhance its ca
 | ---------- | ---------- |
 | `getErrorMessage` | `(country: Country) => string` |
 
-
 ## :wrench: Constants
-
-- [VAT Number Validator 🔍🔍🔍](#vat-number-validator-)
-  - [Why Validating VAT Codes is Important](#why-validating-vat-codes-is-important)
-    - [Benefits of Validating VAT Codes](#benefits-of-validating-vat-codes)
-  - [Package Completeness ✅](#package-completeness-)
-  - [Remaining Development Goals 🛠️](#remaining-development-goals-️)
-  - [Legal Notice 📜](#legal-notice-)
-  - [Contributing Guidelines 🤝](#contributing-guidelines-)
-  - [:toolbox: Functions](#toolbox-functions)
-    - [:gear: isValidCountryVat](#gear-isvalidcountryvat)
-    - [:gear: isValidVat](#gear-isvalidvat)
-    - [:gear: getErrorMessage](#gear-geterrormessage)
-  - [:wrench: Constants](#wrench-constants)
-    - [:gear: countryRegexMap](#gear-countryregexmap)
-    - [:gear: countryErrorMessageMap](#gear-countryerrormessagemap)
-    - [:gear: countrySpecialCaseMap](#gear-countryspecialcasemap)
-  - [:nut\_and\_bolt: Enum](#nut_and_bolt-enum)
-    - [:gear: Country](#gear-country)
 
 ### :gear: countryRegexMap
 
