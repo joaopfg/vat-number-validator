@@ -190,14 +190,15 @@ function validateSwissVat(vat: string): boolean {
     return false;
   }
 
-  const digits = vat.substring(0, 8).split('').map(Number);
-  let weightedSum = 0;
+  const digits = vat.replace(/\D/g, '');
+  const weights = [5, 4, 3, 2, 7, 6, 5, 4];
+  let sum = 0;
 
   for (let i = 0; i < 8; i++) {
-    weightedSum += digits[i] * [5, 4, 3, 2, 7, 6, 5, 4][i];
+    sum += parseInt(digits[i]) * weights[i];
   }
 
-  const remainder = weightedSum % 11;
+  const remainder = sum % 11;
   const checksum = remainder <= 1 ? 0 : 11 - remainder;
   const vatChecksum = parseInt(vat.charAt(8));
 
